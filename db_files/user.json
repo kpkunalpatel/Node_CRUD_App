@@ -1,0 +1,13 @@
+[
+     {
+          "id": 1,
+          "name": "Kunal",
+          "phone": "+919049913343",
+          "email": "k.patel2@zensar.com",
+          "pass": "123456",
+          "otp": 342629,
+          "otp_status": 0,
+          "user_status": 0,
+          "login_status": 0
+     }
+]
