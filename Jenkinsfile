@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     tools {
-        nodejs 'NodeJS 14.x' // Use the NodeJS configuration from Jenkins
+        nodejs 'NodeJS 24.14.0' // Use the NodeJS configuration from Jenkins
     }
 
     environment {
@@ -12,7 +12,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/blessador/simple-nodejs-app.git'
+                git branch: 'main', url: 'https://github.com/kpkunalpatel/Node_CRUD_App.git'
             }
         }
 
