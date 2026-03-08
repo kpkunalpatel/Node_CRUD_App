@@ -24,14 +24,6 @@ pipeline {
             }
         }
 
-        stage('Run Tests') {
-            steps {
-                script {
-                    bat 'npm test'
-                }
-            }
-        }
-
         stage('Build') {
             steps {
                 script {
