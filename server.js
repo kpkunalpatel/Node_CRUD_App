@@ -9,7 +9,7 @@ const postRoutes = require("./Routes/PostRoutes");
 const putRoutes = require("./Routes/PutRoutes");
 const deleteRoutes = require("./Routes/DeleteRoutes");
 
-const PORT = process.env.PORT || 9090;
+const PORT = process.env.PORT || 3000;
 const host = "127.0.0.1";
 
 http.createServer((request, response) => {
