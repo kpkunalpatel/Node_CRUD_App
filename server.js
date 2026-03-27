@@ -10,7 +10,7 @@ const putRoutes = require("./Routes/PutRoutes");
 const deleteRoutes = require("./Routes/DeleteRoutes");
 
 const PORT = process.env.PORT || 3000;
-const host = "127.0.0.1";
+const host = "0.0.0.0";
 
 http.createServer((request, response) => {
 
