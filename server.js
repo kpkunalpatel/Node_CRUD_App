@@ -1,49 +1,64 @@
+// const http = require("http");
+// const url = require("url");
+// const queryString = require("querystring");
 
-const http = require("http");
-const url = require("url");
-const queryString = require("querystring");
+// const middleware = require("./middleware");
+// const getRoutes = require("./Routes/GetRoutes");
+// const postRoutes = require("./Routes/PostRoutes");
+// const putRoutes = require("./Routes/PutRoutes");
+// const deleteRoutes = require("./Routes/DeleteRoutes");
 
-const middleware = require("./middleware");
-const getRoutes = require("./Routes/GetRoutes");
-const postRoutes = require("./Routes/PostRoutes");
-const putRoutes = require("./Routes/PutRoutes");
-const deleteRoutes = require("./Routes/DeleteRoutes");
+// const PORT = process.env.PORT || 3000;
+// const host = "0.0.0.0";
 
-const PORT = process.env.PORT || 3000;
-const host = "0.0.0.0";
+// http.createServer((request, response) => {
 
-http.createServer((request, response) => {
+//     const url_obj = new URL(request.url, `http://${request.headers.host}`);
+//     request.url_obj = url_obj;
 
-    const url_obj = new URL(request.url, `http://${request.headers.host}`);
-    request.url_obj = url_obj;
+//     switch (request.method) {
+//         case "GET":
+//             middleware(request, response, getRoutes);
+//             break;
 
-    switch (request.method) {
-        case "GET":
-            middleware(request, response, getRoutes);
-            break;
+//         case "POST":
+//             middleware(request, response, postRoutes);
+//             break;
 
-        case "POST":
-            middleware(request, response, postRoutes);
-            break;
+//         case "PUT":
+//             middleware(request, response, putRoutes);
+//             break;
 
-        case "PUT":
-            middleware(request, response, putRoutes);
-            break;
+//         case "DELETE":
+//             middleware(request, response, deleteRoutes);
+//             break;
 
-        case "DELETE":
-            middleware(request, response, deleteRoutes);
-            break;
+//         default:
+//             response.writeHead(400, { "Content-Type": "application/josn" });
+//             response.write("Bad request call");
+//             response.end();
+//             break;
+//     }
+// }).listen(PORT, err => {
+//     if (err) {
+//         console.log(`Your server not listen on port ${PORT}`);
+//         throw err
+//     }
+//     console.log(`Your app running URL : http://${host}:${PORT}`);
+// })
+"use strict"
 
-        default:
-            response.writeHead(400, { "Content-Type": "application/josn" });
-            response.write("Bad request call");
-            response.end();
-            break;
-    }
-}).listen(PORT, err => {
-    if (err) {
-        console.log(`Your server not listen on port ${PORT}`);
-        throw err
-    }
-    console.log(`Your app running URL : http://${host}:${PORT}`);
+const express = require("express")
+
+// Constants
+const PORT = 3000
+const HOST = "0.0.0.0"
+
+// App
+const app = express()
+app.get("/", (req, res) => {
+  res.send(`Hello World - ${new Date().toISOString()}`)
 })
+
+app.listen(PORT, HOST)
+console.log(`Running on http://${HOST}:${PORT}`)
