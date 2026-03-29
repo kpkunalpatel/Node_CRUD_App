@@ -57,7 +57,7 @@ const HOST = "0.0.0.0"
 // App
 const app = express()
 app.get("/", (req, res) => {
-  res.send(`Hello World - ${new Date().toISOString()} - Test`)
+  res.send(`Hello World - ${new Date().toISOString()}`)
 })
 
 app.listen(PORT, HOST)
