@@ -1,0 +1,48 @@
+Resources:
+  SampleNodejsDeploy:
+    Type: AWS::EC2::Instance
+    Properties:
+      InstanceType: t3.small
+      ImageId: ami-014d05e6b24240371
+      SecurityGroups:
+        - !Ref SampleNodejsDeploySG
+      UserData: 
+        Fn::Base64:
+          |
+          #!/bin/bash 
+          set -e
+          curl -sL https://deb.nodesource.com/setup_24.x | bash -
+          sudo apt install nodejs
+          node -v
+          npm -v
+          curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+          echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+          sudo apt update && sudo apt install yarn
+          yarn --version
+          sudo -i -u ubuntu bash << EOF
+          set -e
+          cd /home/ubuntu
+          sudo npm install -g pm2
+          git clone https://github.com/kpkunalpatel/Node_CRUD_App.git
+          cd node_with_docker
+          yarn install 
+          pm2 start yarn --time --interpreter bash --name sample_node -- start -p 8000
+          EOF
+
+  SampleNodejsDeploySG:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: for the app nodes that allow ssh, http 
+      SecurityGroupIngress:
+      - IpProtocol: tcp
+        FromPort: '80'
+        ToPort: '80'
+        CidrIp: 0.0.0.0/0
+      - IpProtocol: tcp
+        FromPort: '22'
+        ToPort: '22'
+        CidrIp: 0.0.0.0/0
+      - IpProtocol: tcp
+        FromPort: '3000'
+        ToPort: '3000'
+        CidrIp: 0.0.0.0/0
